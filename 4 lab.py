@@ -35,7 +35,7 @@ for j in range(n):
 list.sort(rab, key=lambda rabotnik: rabotnik.num)
 for j in rab:
     print (j.num, "работник поедет на такси №", j.taksi.num)
-print ("Общая сумма затрат на дорогу домой всех сотрудников составляет:")
+print ("Общая сумма затрат на дорогу домой всех сотрудников составляет:", sum)
 while k!=6:
     c = sum // b
     if (c == 1 and (k == 0 or k == 3)):
