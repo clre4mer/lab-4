@@ -10,7 +10,7 @@ class taksi:
         self.num=num
         self.tarif = t
 
-n=int(input("Сколько работников поедет домой?\n"))
+
 rab=[]
 tak = []
 sum = 0
@@ -19,24 +19,48 @@ k=0
 b=100000
 i=0
 c=1
-for j in range(n):
-    kil = int(input(f"Введите расстояние до дома {j+1} работника: "))
-    rab.append(rabotnik((j+1), kil))
-for j in range(n):
-    tar= int(input(f"Введите тариф {j+1} такси за километр: "))
-    tak.append(taksi((j+1), tar))
-list.sort(rab, key=lambda rabotnik: rabotnik.kilom)
-list.sort(tak, reverse = True, key=lambda taksi: taksi.tarif)
-for j in rab:
+v=1
+while v!=0: #цикл ввода с обработкой ошибок
+    try:
+        n=int(input("Сколько работников поедет домой?\n"))
+    except ValueError:
+        print("Ошибка ввода данных, необходимо ввести число\n")
+    else:
+        v=0
+for j in range(n): #цикл заполнения массива классов
+    v=1
+    while v!=0: #цикл ввода с обработкой ошибок
+        try:
+            kil = int(input(f"Введите расстояние до дома {j+1} работника: "))
+        except ValueError:
+            print("Ошибка ввода данных, необходимо ввести число\n")
+        else:
+            v=0
+            rab.append(rabotnik((j+1), kil))
+       
+for j in range(n): #цикл заполнения массива классов
+    v=1
+    while v!=0: #цикл ввода с обработкой ошибок
+        try:
+            tar= int(input(f"Введите тариф {j+1} такси за километр: "))
+        except ValueError:
+            print("Ошибка ввода данных, необходимо ввести число\n")
+        else:
+            v=0
+            tak.append(taksi((j+1), tar))
+
+list.sort(rab, key=lambda rabotnik: rabotnik.kilom) #сортировка списка по возрастанию значения атрибута километры
+list.sort(tak, reverse = True, key=lambda taksi: taksi.tarif) #сортировка списка по убыванию значения атрибута тариф
+for j in rab: #присваивание соответствующих такси работникам
     j.tar(l)
     l=l+1
-for j in range(n):
+for j in range(n): #считаем сумму затрат
     sum = sum + (rab[j-1].kilom * tak[j-1].tarif)
 list.sort(rab, key=lambda rabotnik: rabotnik.num)
 for j in rab:
     print (j.num, "работник поедет на такси №", j.taksi.num)
 print ("Общая сумма затрат на дорогу домой всех сотрудников составляет:", sum)
-while k!=6:
+while k!=6: #функция перевода числа в запись на русском зыке
     c = sum // b
     if (c == 1 and (k == 0 or k == 3)):
         print('сто ', end='')
